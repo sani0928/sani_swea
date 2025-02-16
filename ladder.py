@@ -1,25 +1,31 @@
 import sys; sys.stdin = open('ladder.txt')
-arr = []
-n = int(input())
 
-for _ in range(n):
-    a = list(map(int, input().split()))
-    arr.append(a)
 
-for line in arr:
-    print(*line)
+for x in range(1,11):
+    n = int(input())
+    arr = []
+    for _ in range(100):
+        arr.append(list(map(int, input().split())))
+    
+    dr=[0,0,-1] #왼,오,위
+    dc=[1,-1,0]
+    r,c = 99,0
+    for i in range(100):
+        if arr[99][i] == 2:
+            c = i
+    
+    while r > 0:
 
-r = c = 0
-for i in range(n): # 처음 2자리를 찾는 중
-    if arr[n - 1][i] == 2:
-        r, c, = n - 1, i
-        break
+        for j in range(3):
+            nr = r + dr[j]
+            nc = c + dc[j]
 
-while r != 0:
-    # 왼쪽과 오른쪽에 길이 있냐
-    if c-1 >= 0 and arr[r][c-1] == 1: # a and b : a가 false면 b는 실행 x
-        c -= 1
-    elif c < n-1 and arr[r][c+1] == 1:
-        c += 1
-    else: # 없다면 위로 가자
-        r -= 1
+            if 0<=nr<100 and 0<=nc<100 and arr[nr][nc] == 1:
+                arr[r][c] = 0
+                r,c= nr,nc
+                break
+        # s = (r,c)
+
+        # print('현재',s)
+
+    print(f'#{x}', c)

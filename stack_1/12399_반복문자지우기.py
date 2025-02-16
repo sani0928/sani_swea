@@ -3,7 +3,6 @@ import sys; sys.stdin = open('12399_input.txt')
 # b = []
 # b.append(a[1:3])
 # print(b)
-11 11
 
 def search(str):
     s = []
