@@ -18,4 +18,3 @@ for x in range(1,t+1):
                 nr = r + dr[j]
                 nc = c + dc[j]
                 if 0<=nr<n and 0<=nc<m:
-                    
