@@ -26,7 +26,7 @@ def Search(puzzle):
 
     # 3x3 정사각 탐색
     for i in range(0,9,3): # 한 사각형 끝나면 옆에 사각형으로
-        lst = [i for i in range(1,10)]
+        lst = [i for i in range(1,10)] # [1,2,3,4,5,6,7,8,9]
         for r in range(3):
             for c in range(3):            
                 if puzzle[r+i][c+i] in lst:
