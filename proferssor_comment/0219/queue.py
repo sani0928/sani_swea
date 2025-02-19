@@ -31,7 +31,7 @@ def dequeue():
 # 일반적인 범위 내에서 작동할 땐 (0~n-1)%n은 정상적으로 동일한 인덱스 값이 나오지만
 # 범위를 벗어나면 (n) 다른 결과가 나온다. (비커즈 n%n = 0)
 
- def enqueue(item):
+def enqueue(item):
     global rear
     # 주의
     if front == (rear + 1) % QSIZE: # %n이 front의 값이 나온다는 것은 front == rear
