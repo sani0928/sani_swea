@@ -19,7 +19,7 @@ for x in range(1,t+1):
                 count +=1
 
                 for j in range(i,n):
-                    arr[j] = 1 - arr[j]
+                    arr[j] = 1 - arr[j] # 0은 1로, 1은 0으로
 
     print(f'#{x}', count)
 
