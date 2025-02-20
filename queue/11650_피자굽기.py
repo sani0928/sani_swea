@@ -51,7 +51,7 @@ for x in range(1,t+1):
         if cheese > 0: # 치즈 다 안녹았으면
             q.append((idx, cheese)) 
 
-        else:
+        else: # 치즈가 다 녹았으면
             q.popleft()
             if ci:
                 q.append(ci.popleft())
