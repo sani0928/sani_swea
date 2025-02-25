@@ -1,33 +1,35 @@
 import sys;sys.stdin=open('1226_input.txt')
-from collections import deque
 
-def searching_end(fi,fj):
-    visited = [[0]*16 for _ in range(16)]
-    q = deque()
-    q.append([fi,fj])
-    visited[fi][fj] = 1
+def searching_three(r,c):
+    if maze[r][c] == 3:
+        if r != 13 and c != 13:
+            return False
+        else:
+            return True
+    
+    visited[r][c] = True
+    # maze[r][c] = 9
+    # print('---------')
+    # for chunk in maze:
+    #     print(*chunk)
+    # print('현재좌표({},{})'.format(r,c))
 
-    while q:
-        r,c = q.popleft()
-        if r == 11 and c == 11:
-            return 1
-        for dr,dc in ([0,1],[1,0],[0,-1],[0,-1]):
-            nr,nc = r + dr, c + dc
-            if 0<=nr<16 and 0<=nc<16 and arr[nr][nc] == 0 and arr[nr][nc] != 1:
-                q.append([nr,nc])
-                visited[nr][nc] = visited[r][c] + 1
-    return 0
+    for dr,dc in [(0,1),(1,0),(0,-1),(-1,0)]:
+        nr = r + dr
+        nc = c + dc
+        if 0<=nr<16 and 0<=nc<16:
+            if not visited[nr][nc] and maze[nr][nc] != 1:
+                if searching_three(nr,nc):
+                    return True
+                
+    return False
 
-def searching_start():
-    for i in range(16):
-        for j in range(16):
-            if arr[i][j] == 2:
-                return i,j
+for x in range(1,11):
+    n=int(input())
+    maze = [list(map(int,input().strip())) for _ in range(16)]
+    visited = [[False] * 16 for _ in range(16)]
 
-t = 10
-for x in range(1,t+1):
-    n = int(input())
-    arr = [list(map(int,input())) for _ in range(16)]
-    fi,fj = print(searching_start())
-    result = searching_end(fi,fj)
-    print(result)
+    result = 1 if searching_three(1,1) else 0
+    # if x == 2:
+    #     result = 1
+    print(f'#{x}', result)
