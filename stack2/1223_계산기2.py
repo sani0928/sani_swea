@@ -1,40 +1,68 @@
 import sys;sys.stdin=open('1223_input.txt')
 
-for x in range(1, 11):
+# def result(num,stack):
+
+#     operators = ('+','*')
+
+#     for i in range(len(num)):
+#         if num[i].isdigit():
+
+#             stack.append(num[i])
+#         elif num[i] in operators:
+#             if len(stack) >= 2:
+#                 if num[i] == '+':
+#                     b = int(stack.pop())
+#                     a = int(stack.pop())
+#                     stack.append(a+b)
+#                 elif num[i] == '*':
+#                     b = int(stack.pop())
+#                     a = int(stack.pop())
+#                     stack.append(a*b)
+
+#                 else:
+#                     continue
+            
+
+t = 10
+for test_case in range(1, t+1):
     n = int(input())
-    arr = list(input().strip())
-    # onlyint = []
-    # PnM = []
-    # for i in arr:
-    #     if i.isdigit() == False:
-    #         PnM.append(i)
-    #     else:
-    #         onlyint.append(i)
+    n_list = list(input())
+ 
+    stack = []
+    num = []
+    operators = ('+','*')
+ 
+    for i in range(n):
+        if n_list[i].isdigit():
+            num.append(n_list[i])
+        elif n_list[i] == '+':
+            while stack:
+                num.append(stack.pop())
+            stack.append(n_list[i])
+        elif n_list[i] == '*':
+            while stack and stack[-1] == '*':
+                num.append(stack.pop())
+            stack.append(n_list[i])
+ 
+    while stack:
+        num.append(stack.pop())
 
-    # print(len(PnM))
-    # print(len(onlyint))
+    for i in range(len(num)):
+        if num[i].isdigit():
 
-    # onlyint = list(map(int,onlyint))
+            stack.append(num[i])
+        elif num[i] in operators:
+            if len(stack) >= 2:
+                if num[i] == '+':
+                    b = int(stack.pop())
+                    a = int(stack.pop())
+                    stack.append(a+b)
+                elif num[i] == '*':
+                    b = int(stack.pop())
+                    a = int(stack.pop())
+                    stack.append(a*b)
 
-    # for j in range(len(PnM)):
-    #     cnt = onlyint[j]
-    #     if PnM[j] == '+':
-    #        cnt = cnt + onlyint[j+1]
-    #     else:
-    #         cnt = cnt * onlyint[j+1]
+                else:
+                    continue
 
-    # print(cnt)
-
-    q = []
-    cnt = 0
-    for i in arr:
-        if i.isdigit() == True:
-            q.append
-        elif i == '+'
-    
-    print(cnt)
-
-'''
-5+5+9*5+5
-55+95*+7+
-'''
+    print('#{} {}'.format(test_case,*stack))

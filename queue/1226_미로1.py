@@ -2,10 +2,7 @@ import sys;sys.stdin=open('1226_input.txt')
 
 def searching_three(r,c):
     if maze[r][c] == 3:
-        if r != 13 and c != 13:
-            return False
-        else:
-            return True
+        return True
     
     visited[r][c] = True
     # maze[r][c] = 9
