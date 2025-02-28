@@ -2,21 +2,24 @@ import sys; sys.stdin = open('5432_input.txt')
 
 T = int(input())
 for tc in range(1, T+1):
-    lst = input()
-    iron = []
-    count = 0
-
-    for i in range(len(lst)):
-        if lst[i] == '(':           # '('인 경우 append
-            iron.append('(')
-        elif lst[i] == ')':         # ')'인 경우
-            if lst[i-1] == '(':     # 경우1. 레이저
-                iron.pop()
-                count += len(iron)
-                print('레이저', count)
-            else:                   # 경우2. 쇠막대
-                iron.pop()
-                count += 1
-                print('쇠막대', count)
+    arr = list(input())
     
-    print(f'#{tc} {count}')
+    for i in range(len(arr)):
+        if arr[i] == '(' and arr[i+1] == ')':
+            arr[i] = '.'
+            arr[i+1] = '*'
+
+    total_cnt = 0
+    bong_cnt = 0
+
+    for j in range(len(arr)):
+        if arr[j] == '(':
+            bong_cnt += 1
+            total_cnt += 1
+        elif arr[j] == ')':
+            bong_cnt -= 1
+        elif arr[j] == '*':
+            total_cnt += bong_cnt
+
+
+    print('#{} {}'.format(tc,total_cnt))

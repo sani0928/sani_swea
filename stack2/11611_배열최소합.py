@@ -10,9 +10,32 @@ import sys;sys.stdin=open('11611_input.txt')
 t=int(input())
 for test_case in range(1,t+1):
     n = int(input())
-    arr = [list(map(int,input().split())) for _ in range(n)]
-    visited = [0] * n
+    matrix = [list(map(int,input().split())) for _ in range(n)]
+    visited = [[False] * n for _ in range(n)]
+    factorial_val = 1
+    
+    for v in range(1,n+1):
+        factorial_val *= v
+    r = 0 ; c = 0
+    cnt = 0
+    min_cnt = 9999
+    def sum(r,c):
+
+        c = 0
+
+        while True:
+
+            if visited[r][c] == True:
+                for i in range(r):
+                    if visited[r-i][c] != True:
+                        cnt += matrix[r][c]
+                        c+=1
+                    else:
+            else:
+                cnt += matrix[r][c]
+            
+            sum(r+1,c)
+        
+    
 
 
-    for r in range(n):
-        print(min(arr[r][:n]))
